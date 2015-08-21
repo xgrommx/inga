@@ -35,7 +35,7 @@ module.exports = function(opt){
   data_source
     .map(virtual_view) // virtualView :: context -> virtualDOM
     .startWith(h())
-    .bufferWithCount(2, 1) // len:2, offset:1 => (0,1), (1,2), (2,3), ...
+    .pairwise() // len:2, offset:1 => (0,1), (1,2), (2,3), ...
     .subscribe(function(history){
       $div = patch($div, diff(history[0], history[1]));
     });
